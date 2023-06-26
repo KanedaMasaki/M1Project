@@ -30,7 +30,7 @@
 
 ## GUI紙芝居
 ### 予約カレンダー画面
-<img src="img/calendar.png">
+<img src="../img/calendar.png">
 
 ### 予約状況画面
-<img src="img/day.png">
+<img src="../img/day.png">
