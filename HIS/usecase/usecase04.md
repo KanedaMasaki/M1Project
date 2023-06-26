@@ -13,4 +13,4 @@
 1. 掃除リストを表示する
 
 ## GUI紙芝居
-<img src="./img/scr_seisou.jpg">
+<img src="../img/scr_seisou.jpg">
