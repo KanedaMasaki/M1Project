@@ -23,5 +23,5 @@
 
 ## GUI紙芝居
 ### 朝食リスト画面
-<img src="HIS\img\breakfast_list.png">
+<img src="../img/breakfast_list.png">
 
