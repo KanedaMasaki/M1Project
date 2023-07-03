@@ -14,4 +14,4 @@
 
 ### ドメインモデル図
 
-<img src="./img/domain_model.png">
+<img src="./img/domain_model.jpeg">
