@@ -31,42 +31,42 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="building">人数:</label></td>
+                <td><label for="people">人数:</label></td>
                 <td>
-                    <input type="text" th:field="*{building}" />
-                    <span th:if="${#fields.hasErrors('building')}" th:errors="*{building}" style="color: red"></span>
+                    <input type="text" th:field="*{people}" />
+                    <span th:if="${#fields.hasErrors('people')}" th:errors="*{people}" style="color: red"></span>
                 </td>
             </tr>
             <tr>
-                <td><label for="description">チェックイン日時:</label></td>
+                <td><label for="checkInDate">チェックイン日時:</label></td>
                 <td>
-                    <textarea rows="5" th:field="*{description}"></textarea>
-                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red"></span>
+                    <textarea rows="5" th:field="*{checkInDate}"></textarea>
+                    <span th:if="${#fields.hasErrors('checkInDate')}" th:errors="*{checkInDate}" style="color: red"></span>
                 </td>
             </tr>
             <tr>
-                <td><label for="description">宿泊日数:</label></td>
+                <td><label for="stayDays">宿泊日数:</label></td>
                 <td>
-                    <textarea rows="5" th:field="*{description}"></textarea>
-                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red"></span>
+                    <textarea rows="5" th:field="*{stayDays}"></textarea>
+                    <span th:if="${#fields.hasErrors('stayDays')}" th:errors="*{statDays}" style="color: red"></span>
                 </td>
             </tr>
             <tr>
                 <td><label for="description">朝食の有無:</label></td>
                 <td>
-                    <textarea rows="5" th:field="*{description}"></textarea>
-                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red"></span>
+                    <textarea rows="5" th:field="*{breakFast}"></textarea>
+                    <span th:if="${#fields.hasErrors('breakFast')}" th:errors="*{breakFast}" style="color: red"></span>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <a class="button" th:href="@{/rooms}">戻る</a>
+                    <a class="button" th:href="@{/}">戻る</a>
                     <input class="button" type="submit" value="登録" />
                 </td>
             </tr>
         </table>
     </form>
-    <div th:insert="parts.html :: pageFooter"></div>
+
 
 </body>
 

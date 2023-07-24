@@ -10,18 +10,27 @@
 </head>
 <body>
 
-<h1>Hotle Information Service</h1>
+    <h1>Hotle Information Service</h1>
 
-<img th:src="@{/hotel_bellboy.png}" width="100">
-<p>ホテルの情報をすばやく共有します！！</p>
-
-<a th:href="@{/cook}">厨房用</a>
+    <img th:src="@{/hotel_bellboy.png}" width="100">
+    <p>ホテルの情報をすばやく共有します！！</p>
 
 
-<a th:href="@{/clean}">掃除用</a>
+
+    <div class="container mt-5">
+        <!-- ボタン1 -->
+        <a th:href="@{/cook}" class="btn btn-primary btn-lg mr-3">厨房用ページ</a>
+
+        <!-- ボタン2 -->
+        <a th:href="@{/clean}" class="btn btn-secondary btn-lg mr-3">掃除用ページ</a>
+
+        <!-- ボタン3 -->
+        <a th:href="@{/front}" class="btn btn-success btn-lg">フロント用ページ</a>
+
+    </div>
 
 
-<a th:href="@{/front}">フロント用</a>
+
 
 
 
