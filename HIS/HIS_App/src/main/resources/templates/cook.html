@@ -9,6 +9,39 @@
           type="text/javascript"></script>
 </head>
 
+<!-- 厨房専用ページ）
+・朝食がいるなおかつ時刻が設定されているリストを表示する。 -->
+
 <body class="m-3">
     <h1>こちらは厨房専用ページです。</h1>
+    <br>
+    <h3>朝食のリスト</h3>
+    <table class="table mb-3">
+        <thead>
+        <tr>
+          <th>名前</th>
+          <th>朝食時刻</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- <tr th:each="log:${logs}"
+            th:if="${logStat.first || #temporals.format(log.recordedOn.toLocalDateTime(),'yyyy-MM-dd') != #temporals.format(logs.get(logStat.index-1).recordedOn.toLocalDateTime(),'yyyy-MM-dd')}">
+          <td th:text="${#temporals.format(log.recordedOn.toLocalDateTime(),'yyyy-MM-dd')}"></td>
+          <td th:text="${log.score}"></td>
+          <td th:text="${log.comment}"></td>
+        </tr> -->
+        <tr>
+            <td>岡本一郎さん</td>
+            <td>2023-07-30</td>
+        </tr>
+        <tr>
+            <td>岡本二朗さん</td>
+            <td>2023-07-31</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <form method="get" th:action="@{/}">
+        <input class="btn btn-warning" type="submit" value="終了">
+      </form>
 </body>

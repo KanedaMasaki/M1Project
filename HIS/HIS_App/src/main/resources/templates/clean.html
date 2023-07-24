@@ -9,6 +9,60 @@
           type="text/javascript"></script>
 </head>
 
+<!-- 掃除専用ページ）
+・掃除リストを見る
+・掃除済みマークを付ける -->
+
 <body class="m-3">
     <h1>こちらは清掃員専用ページです。</h1>
+    <br>
+    <h3>掃除が必要なリスト</h3>
+    <table class="table mb-3">
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>掃除のチェック</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr th:each="log:${logs}"
+                th:if="${logStat.first || #temporals.format(log.recordedOn.toLocalDateTime(),'yyyy-MM-dd') != #temporals.format(logs.get(logStat.index-1).recordedOn.toLocalDateTime(),'yyyy-MM-dd')}">
+            <td th:text="${#temporals.format(log.recordedOn.toLocalDateTime(),'yyyy-MM-dd')}"></td>
+            <td th:text="${log.score}"></td>
+            <td th:text="${log.comment}"></td>
+            </tr> -->
+            <tr>
+                <td>岡本一郎さん</td>
+                <td>
+                    <input type="checkbox" id="checkbox1" />
+                </td>
+            </tr>
+            <tr>
+                <td>岡本二朗さん</td>
+                <td>
+                    <input type="checkbox" id="checkbox2" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="updateChecklist()">確定</button>
+
+      <form method="get" th:action="@{/}">
+        <input class="btn btn-warning" type="submit" value="終了">
+      </form>
+
+      <script>
+        function updateChecklist() {
+            var checkbox1 = document.getElementById("checkbox1");
+            var checkbox2 = document.getElementById("checkbox2");
+
+            var isChecked1 = checkbox1.checked;
+            var isChecked2 = checkbox2.checked;
+
+            // ここで、isChecked1とisChecked2の値をサーバーに送信してデータを更新する処理を実装します。
+            // 例えば、Ajaxを使用して非同期でデータを送信することが考えられます。
+            // サーバー側でデータの更新が行われた後、成功した旨のメッセージをユーザーに表示するなどの処理も追加できます。
+        }
+    </script>  
 </body>

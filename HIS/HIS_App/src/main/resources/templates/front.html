@@ -9,6 +9,54 @@
           type="text/javascript"></script>
 </head>
 
+<!-- フロント専用ページ）
+・朝食がいるなおかつ時刻が設定されていないリストが表示される。
+・朝食の時間を編集する。 -->
+
 <body class="m-3">
     <h1>こちらはフロント専用ページです。</h1>
+    <br>
+    <h3>朝食時間が未確定なリスト</h3>
+    <table class="table mb-3">
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>朝食時刻</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>岡本一郎さん</td>
+                <td>
+                    <input type="time" id="timeInput1" />
+                </td>
+            </tr>
+            <tr>
+                <td>岡本二朗さん</td>
+                <td>
+                    <input type="time" id="timeInput2" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="updateChecklist()">確定</button>
+
+    <form method="get" th:action="@{/}">
+        <input class="btn btn-warning" type="submit" value="終了">
+    </form>
+
+    <script>
+        function updateChecklist() {
+            var timeInput1 = document.getElementById("timeInput1");
+            var timeInput2 = document.getElementById("timeInput2");
+
+            var breakfastTime1 = timeInput1.value;
+            var breakfastTime2 = timeInput2.value;
+
+            // ここで、breakfastTime1とbreakfastTime2の値をサーバーに送信してデータを更新する処理を実装します。
+            // 例えば、Ajaxを使用して非同期でデータを送信することが考えられます。
+            // サーバー側でデータの更新が行われた後、成功した旨のメッセージをユーザーに表示するなどの処理も追加できます。
+        }
+    </script>
 </body>
