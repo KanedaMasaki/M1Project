@@ -1,10 +1,13 @@
 package jp.kobe_u.cs.daikibo.HIS.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.util.*;
 
+import jp.kobe_u.cs.daikibo.HIS.entity.Yoyaku;
 import jp.kobe_u.cs.daikibo.HIS.service.YoyakuService;
 
 
@@ -19,10 +22,10 @@ public class YayakuController {
     }
 
     @GetMapping("/front")
-    String showyoyakuList() {
-        ArrayList<Tsubuyaki> list = new ArrayList<>();
-
+    String showyoyakuList(Model model) {
+        ArrayList<Yoyaku> list = new ArrayList<>();
         list = ts.getAllYoyaku();
+        model.addAttribute("Yoyakulist", list);
         return "front";
     }
 
