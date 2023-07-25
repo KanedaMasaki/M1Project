@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>HIS</title>
-    <link rel="stylesheet" href="../static/index.css">
+    <link rel="stylesheet" th:href="@{../static/style.css}">
     <link
       rel="stylesheet"
       th:href="@{/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css}"
@@ -14,7 +14,7 @@
     ></script>
   </head>
   <body class="m-3 index">
-    
+
     <h1>Hotel Information Service</h1>
 
     <img th:src="@{/hotel_bellboy.png}" width="100" />
