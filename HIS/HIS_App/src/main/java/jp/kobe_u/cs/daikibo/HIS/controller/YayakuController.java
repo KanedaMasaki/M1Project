@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import jp.kobe_u.cs.daikibo.HIS.entity.Yoyaku;
 import jp.kobe_u.cs.daikibo.HIS.service.YoyakuService;
 
-
 @Controller
 public class YayakuController {
     @Autowired
@@ -19,6 +18,14 @@ public class YayakuController {
     @GetMapping("/")
     String home() {
         return "index";
+    }
+
+    @GetMapping("/customer")
+    String customer(Model model) {
+
+        model.addAttribute(new YoyakuForm());
+
+        return "customer";
     }
 
     @GetMapping("/front")

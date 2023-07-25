@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>HIS</title>
+   
     <link
       rel="stylesheet"
       th:href="@{/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css}"
     />
+    <link rel="stylesheet" href="../static/index.css">
+
     <script
       th:src="@{/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js}"
       type="text/javascript"
@@ -15,25 +18,24 @@
   <body>
     <h1>Hotle Information Service</h1>
 
-    <h1>Hotle Information Service</h1>
+    <img th:src="@{/hotel_bellboy.png}" width="200" />
+    <p style="margin-top:20px;">ホテルの情報をすばやく共有します！！</p>
 
-        <img th:src="@{/hotel_bellboy.png}" width="100" />
-        <p>ホテルの情報をすばやく共有します！！</p>
+    <!-- <a th:href="@{/cook}">厨房用</a> -->
 
-
-        <div class="container mt-5">
-        <!-- ボタン1 -->
-        <a th:href="@{/cook}" class="btn btn-primary btn-lg mr-3">厨房用ページ</a>
-
-        <!-- ボタン2 -->
-        <a th:href="@{/clean}" class="btn btn-secondary btn-lg mr-3">掃除用ページ</a>
-
-        <!-- ボタン3 -->
-        <a th:href="@{/front}" class="btn btn-success btn-lg">フロント用ページ</a>
-
-        </div>
-
-
-      
+    <div style="display: flex; justify-content: left;">
+      <form style="margin-right:20px;" method="get" th:action="@{/cook}">
+        <input class="btn btn-danger" type="submit" value="厨房用">
+      </form>
+    
+      <form style="margin-right:20px;" method="get" th:action="@{/clean}">
+        <input class="btn btn-primary" type="submit" value="清掃用">
+      </form> 
+    
+      <form method="get" th:action="@{/front}">
+        <input class="btn btn-success" type="submit" value="フロント用">
+      </form>
+    </div>
+    <br />
   </body>
 </html>
