@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class YoyakuForm {
     String name; // 名前
-    String checkInDateInput; // チェックイン日時
+    String checkInDate; // チェックイン日時
     // int stayDays; // 宿泊日数
     String email; // メールアドレス
     boolean breakfast; // 朝食の有無

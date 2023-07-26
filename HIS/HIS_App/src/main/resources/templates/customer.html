@@ -29,7 +29,7 @@
   </div>
   <div class="mb-3">
     <input class="form-control" placeholder="チェックイン日時" required
-          th:field="*{checkInDateInput}" type="date" id="checkInDateInput">
+          th:field="*{checkInDate}" type="date" id="checkInDate">
   </div>
   <!-- <div class="mb-3">
     <input class="form-control" placeholder="宿泊日数" required
@@ -58,14 +58,14 @@
   // ページが読み込まれたときに実行される処理
   document.addEventListener("DOMContentLoaded", function () {
     // チェックイン日時のinput要素を取得
-    var checkInDateInput = document.getElementById("checkInDateInput");
+    var checkInDate = document.getElementById("checkInDate");
 
     // 現在の日時を取得
     var now = new Date();
 
     // チェックイン日時のinput要素に、最小値として現在の日時を設定
     var minDate = now.toISOString().split("T")[0]; // 日付部分のみを取得
-    checkInDateInput.min = minDate;
+    checkInDate.min = minDate;
   });
 </script>
     

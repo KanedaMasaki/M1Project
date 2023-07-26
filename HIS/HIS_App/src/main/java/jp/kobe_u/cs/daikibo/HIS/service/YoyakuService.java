@@ -58,7 +58,7 @@ public class YoyakuService {
     // return list;
     // }
 
-    // 日付別朝食食べる人リスト取得
+    // 当日の飲食を取っていてなおかつ朝食の時間が確定しているリスト取得
     public ArrayList<Yoyaku> getBreakfastTrue() {
         LocalDate date = LocalDate.now();
         Iterable<Yoyaku> breakfastList = repo.findByCheckInDateAndBreakfast(date, true);
@@ -87,13 +87,13 @@ public class YoyakuService {
 
     public Yoyaku createYoyaku(YoyakuForm form) {
 
-        LocalDate checkInDateInput = LocalDate.parse(form.getCheckInDateInput());
+        LocalDate checkInDate = LocalDate.parse(form.getCheckInDate());
 
         // ユーザをDBに登録し、登録したユーザの情報を戻り値として返す
         return repo.save(new Yoyaku(
                 null,
                 form.getName(),
-                checkInDateInput,
+                checkInDate,
                 // form.getStayDays(),
                 form.getEmail(),
                 form.isBreakfast(),

@@ -1,20 +1,26 @@
 package jp.kobe_u.cs.daikibo.HIS.controller;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.kobe_u.cs.daikibo.HIS.entity.Yoyaku;
+import jp.kobe_u.cs.daikibo.HIS.repository.YoyakuRepository;
 import jp.kobe_u.cs.daikibo.HIS.service.YoyakuService;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class YayakuController {
     @Autowired
     YoyakuService ts;
+    YoyakuRepository yr;
 
     @GetMapping("/")
     String home() {
@@ -49,8 +56,8 @@ public class YayakuController {
                 "name",
                 form.getName());
         model.addAttribute(
-                "checkInDateInput",
-                form.getCheckInDateInput());
+                "checkInDate",
+                form.getCheckInDate());
         // model.addAttribute(
         // "stayDays",
         // form.getStayDays());
@@ -96,6 +103,29 @@ public class YayakuController {
         ArrayList<Yoyaku> list = ts.getCleanFalse();
         model.addAttribute("cleanList", list);
         return "clean";
+    }
+
+    @PostMapping("/{id}/clean")
+    public String cleaning(
+            @PathVariable("id") Long id,
+            @RequestParam("name") String name,
+            @RequestParam("checkInDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkInDate,
+            @RequestParam("Email") String Email,
+            @RequestParam("breakfast") boolean breakfast,
+            @RequestParam("breakfastTime") LocalDateTime breakfastTime,
+            @RequestParam("clean") boolean clean) {
+
+        // DB上のユーザ情報を更新し、新しいユーザ情報を戻り値として返す
+        yr.save(new Yoyaku(
+                id,
+                name,
+                checkInDate,
+                Email,
+                breakfast,
+                breakfastTime,
+                true));
+
+        return "redirect:/"; // フォームが表示されるindex.htmlにリダイレクト
     }
 
 }
