@@ -25,7 +25,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr th:each="log:${yoyakulist}">
+                <td th:text="${log.name}"></td>
+                <td>
+                    <span>
+                        <form th:action="@{/__${log['id']}__/front}" method="post">
+                            <input type="hidden" name="id" th:value="${log['id']}">
+                            <input type="hidden" name="name" th:value="${log.name}">
+                            <input type="hidden" name="checkInDate" th:value="${checkInDate}">
+                            <input type="hidden" name="Email" th:value="${Email}">
+                            <input type="hidden" name="breakfast" th:value="${breakfast}">
+                            <input type="hidden" name="breakfastTime" th:value="${breakfastTime}">
+                            <input type="hidden" name="clean" th:value="${clean}">
+                            <input type="submit" class="btn btn-primary" value="助ける">
+                        </form>
+                    </span>
+                </td>
+            </tr>
+            <!-- <tr>
                 <td>岡本一郎さん</td>
                 <td>
                     <input type="time" id="timeInput1" />
@@ -36,11 +53,11 @@
                 <td>
                     <input type="time" id="timeInput2" />
                 </td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 
-    <button onclick="updateChecklist()">確定</button>
+    <button style="margin-bottom:20px;" class="btn btn-warning" onclick="updateChecklist()">確定</button>
 
     <form method="get" th:action="@{/}">
         <input class="btn btn-warning" type="submit" value="終了">

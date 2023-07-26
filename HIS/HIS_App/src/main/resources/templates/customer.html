@@ -29,24 +29,45 @@
   </div>
   <div class="mb-3">
     <input class="form-control" placeholder="チェックイン日時" required
-          th:field="*{checkInDateTime}" type="date">
+          th:field="*{checkInDate}" type="date" id="checkInDate">
   </div>
-  <div class="mb-3">
+  <!-- <div class="mb-3">
     <input class="form-control" placeholder="宿泊日数" required
           th:field="*{stayDays}" type="number">
+  </div> -->
+  <div class="mb-3">
+    <input class="form-control" placeholder="メールアドレス" required
+          th:field="*{email}" type="email">
   </div>
   <div class="mb-3">
-    <input class="form-control" placeholder="電話番号" required
-          th:field="*{tellNumber}" type="text">
+    <label for="breakfast">朝食を希望しますか？</label>
+    <input type="checkbox" th:field="*{breakfast}">
   </div>
-  <div class="mb-3">
-    <input class="form-control" placeholder="朝食の有無"
-          th:field="*{breakfast}" type="checkbox">
-  </div>
+  <!-- <div class="mb-3">
+    <input class="form-check-input" placeholder="朝食の有無" th:checked="${yoyakuForm.breakfast}" th:attr="type=checkbox, name=*{breakfast}">
+    <label class="form-check-label">朝食あり</label>
+  </div> -->
+
   <div class="mb-3">
     <input class="btn btn-primary" type="submit" value="登録する">
   </div>
   </form>
+  
+  <!-- JavaScriptのコード -->
+<script>
+  // ページが読み込まれたときに実行される処理
+  document.addEventListener("DOMContentLoaded", function () {
+    // チェックイン日時のinput要素を取得
+    var checkInDate = document.getElementById("checkInDate");
+
+    // 現在の日時を取得
+    var now = new Date();
+
+    // チェックイン日時のinput要素に、最小値として現在の日時を設定
+    var minDate = now.toISOString().split("T")[0]; // 日付部分のみを取得
+    checkInDate.min = minDate;
+  });
+</script>
     
   </body>
 </html>
