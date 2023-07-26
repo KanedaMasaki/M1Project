@@ -3,26 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <title>HIS</title>
-    <link rel="stylesheet" th:href="@{../static/style.css}">
+
+
     <link
       rel="stylesheet"
       th:href="@{/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css}"
     />
+
     <script
       th:src="@{/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js}"
       type="text/javascript"
     ></script>
-  </head>
-  <body class="m-3 index">
+
+    <style>
+      body{
+       
+        /* 背景画像を指定 */
+        background-image: url('00000-4229768730.png');
+        /* 背景画像の繰り返しを止めて中央に配置 */
+        background-repeat: no-repeat;
+        background-position: center;
+        /* 背景画像をウィンドウ全体に広げる */
+        background-size: 100%;
+        
+      }
+      h1 {
+        /* 線の種類（二重線）太さ 色 */
+        border-bottom: double 5px #FFC778;
+        font-family: 'Arial', sans-serif;
+        color: #2f4f4f;
+        text-align: center;
+        margin-bottom: 20px;
+        background: #c2edff;/*背景色*/
+        padding: 0.5em;/*文字まわり（上下左右）の余白*/
+      }
+      
+    
+    
+     .bellboy{
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+     }
+    
+      
+      .btn {
+        width: 200px;
+        height: 100px;
+        padding: 1em;
+        font-size: 30px;
+
+      }
+
+    
+    
+
+    </style>
+  </head >
+  <body>
 
     <h1>Hotel Information Service</h1>
+    <div class="bellboy">
+    <img th:src="@{/hotel_bellboy.png}" width="250" />
+    </div>
 
-    <img th:src="@{/hotel_bellboy.png}" width="100" />
-    <p style="margin-top:20px;">ホテルの情報をすばやく共有します！！</p>
 
     <!-- <a th:href="@{/cook}">厨房用</a> -->
 
-    <div style="display: flex; justify-content: left;">
+    <div style="display: flex; justify-content: center;">
       <form style="margin-right:20px;" method="get" th:action="@{/cook}">
         <input class="btn btn-danger" type="submit" value="厨房用">
       </form>
