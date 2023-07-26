@@ -25,13 +25,11 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <tr th:each="log:${logs}"
-                th:if="${logStat.first || #temporals.format(log.recordedOn.toLocalDateTime(),'yyyy-MM-dd') != #temporals.format(logs.get(logStat.index-1).recordedOn.toLocalDateTime(),'yyyy-MM-dd')}">
-            <td th:text="${#temporals.format(log.recordedOn.toLocalDateTime(),'yyyy-MM-dd')}"></td>
-            <td th:text="${log.score}"></td>
-            <td th:text="${log.comment}"></td>
-            </tr> -->
-            <tr>
+            <tr th:each="log:${cleanList}">
+            <td th:text="${log.name}"></td>
+            <td th:text="${log.clean}"></td>
+            </tr>
+            <!-- <tr>
                 <td>岡本一郎さん</td>
                 <td>
                     <input type="checkbox" id="checkbox1" />
@@ -42,11 +40,11 @@
                 <td>
                     <input type="checkbox" id="checkbox2" />
                 </td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 
-    <button onclick="updateChecklist()">確定</button>
+    <button style="margin-bottom:20px;" class="btn btn-warning" onclick="updateChecklist()">確定</button>
 
       <form method="get" th:action="@{/}">
         <input class="btn btn-warning" type="submit" value="終了">

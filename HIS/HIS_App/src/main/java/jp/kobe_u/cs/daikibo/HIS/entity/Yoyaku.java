@@ -31,4 +31,8 @@ public class Yoyaku {
     LocalDateTime breakfastTime; // 朝食の時間
     boolean clean; // 掃除したかどうか
     // int roomNumber; // 部屋番号
+
+    // public String toString() {
+    // return "名前：" + name + "さん, 朝食時刻：" + breakfast + "，チェックイン日：" + checkInDate;
+    // }
 }

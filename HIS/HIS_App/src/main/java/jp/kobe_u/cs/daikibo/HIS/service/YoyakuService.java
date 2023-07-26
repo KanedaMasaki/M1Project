@@ -2,6 +2,8 @@ package jp.kobe_u.cs.daikibo.HIS.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +57,33 @@ public class YoyakuService {
     // breakfastList.forEach(list::add);
     // return list;
     // }
+
+    // 日付別朝食食べる人リスト取得
+    public ArrayList<Yoyaku> getBreakfastTrue() {
+        LocalDate date = LocalDate.now();
+        Iterable<Yoyaku> breakfastList = repo.findByCheckInDateAndBreakfast(date, true);
+        ArrayList<Yoyaku> list = new ArrayList<>();
+        breakfastList.forEach(list::add);
+        return list;
+    }
+
+    // 当日の掃除をしていない人のリストを取ってくる
+    public ArrayList<Yoyaku> getCleanFalse() {
+        LocalDate date = LocalDate.now();
+        Iterable<Yoyaku> cleanList = repo.findByCheckInDateAndClean(date, false);
+        ArrayList<Yoyaku> list = new ArrayList<>();
+        cleanList.forEach(list::add);
+        return list;
+    }
+
+    // 当日の朝食をとっていてなおかつ朝食の時間が未定ののリストを取ってくる
+    public ArrayList<Yoyaku> getBreakfastTime() {
+        LocalDate date = LocalDate.now();
+        Iterable<Yoyaku> breakfastList = repo.findByCheckInDateAndBreakfastAndBreakfastTime(date, true, null);
+        ArrayList<Yoyaku> list = new ArrayList<>();
+        breakfastList.forEach(list::add);
+        return list;
+    }
 
     public Yoyaku createYoyaku(YoyakuForm form) {
 

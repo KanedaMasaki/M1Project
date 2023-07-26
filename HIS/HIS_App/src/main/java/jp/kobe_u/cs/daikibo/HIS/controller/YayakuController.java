@@ -79,19 +79,22 @@ public class YayakuController {
 
     @GetMapping("/front")
     String showyoyakuList(Model model) {
-        ArrayList<Yoyaku> list = new ArrayList<>();
-        // list = ts.getAllYoyaku();
-        model.addAttribute("Yoyakulist", list);
+        ArrayList<Yoyaku> list = ts.getBreakfastTime();
+        model.addAttribute("yoyakulist", list);
         return "front";
     }
 
     @GetMapping("/cook")
-    String showcookList() {
+    String showcookList(Model model) {
+        ArrayList<Yoyaku> list = ts.getBreakfastTrue();
+        model.addAttribute("cookList", list);
         return "cook";
     }
 
     @GetMapping("/clean")
-    String showcleanList() {
+    String showcleanList(Model model) {
+        ArrayList<Yoyaku> list = ts.getCleanFalse();
+        model.addAttribute("cleanList", list);
         return "clean";
     }
 

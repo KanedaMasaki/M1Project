@@ -25,7 +25,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr th:each="log:${yoyakuList}">
+                <td th:text="${log.name}"></td>
+                <td th:text="${log.breakfastTime}"></td>
+            </tr>
+            <!-- <tr>
                 <td>岡本一郎さん</td>
                 <td>
                     <input type="time" id="timeInput1" />
@@ -36,11 +40,11 @@
                 <td>
                     <input type="time" id="timeInput2" />
                 </td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 
-    <button onclick="updateChecklist()">確定</button>
+    <button style="margin-bottom:20px;" class="btn btn-warning" onclick="updateChecklist()">確定</button>
 
     <form method="get" th:action="@{/}">
         <input class="btn btn-warning" type="submit" value="終了">
