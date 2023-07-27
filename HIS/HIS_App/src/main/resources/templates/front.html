@@ -31,17 +31,19 @@
                 <td th:text="${log.name}"></td>
                 <td>
                     <span>
-                        <form id="'Form-' + ${log.id}" th:action="@{/front/update}" method="post">
+                        <form th:id="'Form-' + ${log.id}" th:action="@{/front/update}" method="post">
                             <input type="hidden" name="id" th:value="${log.id}">
                             <input type="hidden" name="name" th:value="${log.name}">
                             <input type="hidden" name="checkInDate" th:value="${log.checkInDate}">
                             <input type="hidden" name="Email" th:value="${log.Email}">
                             <input type="hidden" name="breakfast" th:value="${log.breakfast}">
+                            <input type="hidden" name="clean" th:value="${log.clean}">
+                            <input type="hidden" name="roomNumber" th:value="${log.roomNumber}">
                             <!-- 朝食時間入力フォーム -->
                             <div th:id="'update-' + ${log.id}" style="display: none;">
                                 <label for="timeInput">時間を入力してください:</label><br>
                                 <input type="time" name="breakfastTime">
-                                <button style="margin-bottom:20px;" class="btn btn-warning" th:onclick="'updateChecklist(\'' + ${log.id} + '\')'">確定</button>
+                                <button style="margin-bottom:20px;" class="btn btn-warning" th:onclick="'updatelist(\'' + ${log.id} + '\')'">確定</button>
                             </div>
                             <input th:id="'button-' + ${log.id}" class="btn btn-success" value="入力する" th:onclick="'toggleInputForm(\'' + ${log.id} + '\')'">
                         </form>
@@ -66,7 +68,7 @@
         }
 
         // チェックリスト更新
-        function updateChecklist(logIndex) {
+        function updatelist(logIndex) {
             // フォーム処理
             var form = document.getElementById("Form-" + logIndex);
             form.submit();

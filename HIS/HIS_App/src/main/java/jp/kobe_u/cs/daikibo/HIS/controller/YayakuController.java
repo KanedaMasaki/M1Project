@@ -66,6 +66,9 @@ public class YayakuController {
         model.addAttribute(
                 "breakfast",
                 form.isBreakfast());
+        model.addAttribute(
+                "roomNumber",
+                form.getRoomNumber());
         // ユーザ登録確認ページ
         return "customerRegistration";
     }
@@ -76,7 +79,6 @@ public class YayakuController {
             RedirectAttributes attributes,
             @ModelAttribute @Validated YoyakuForm form,
             BindingResult bindingResult) {
-
         ts.createYoyaku(form);
         // 体調記録ページ
         return "conguratulation";
@@ -106,7 +108,6 @@ public class YayakuController {
         RedirectAttributes attributes,
         @ModelAttribute @Validated YoyakuForm form,
         BindingResult bindingResult) {
-        System.out.println(form.getBreakfastTime());
         ts.updateYoyaku(form);
         return "redirect:/front";
     }
@@ -124,28 +125,18 @@ public class YayakuController {
         model.addAttribute("cleanList", list);
         return "clean";
     }
-
-    @PostMapping("/{id}/clean")
+    
+    @PostMapping("/clean/update")
     public String cleaning(
-            @PathVariable("id") Long id,
-            @RequestParam("name") String name,
-            @RequestParam("checkInDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkInDate,
-            @RequestParam("Email") String Email,
-            @RequestParam("breakfast") boolean breakfast,
-            @RequestParam("breakfastTime") LocalTime breakfastTime,
-            @RequestParam("clean") boolean clean) {
+        Model model,
+        RedirectAttributes attributes,
+        @ModelAttribute @Validated YoyakuForm form,
+        BindingResult bindingResult) {
 
         // DB上のユーザ情報を更新し、新しいユーザ情報を戻り値として返す
-        yr.save(new Yoyaku(
-                id,
-                name,
-                checkInDate,
-                Email,
-                breakfast,
-                breakfastTime,
-                true));
+        ts.updateYoyaku(form);
 
-        return "redirect:/"; // フォームが表示されるindex.htmlにリダイレクト
+        return "redirect:/clean"; // フォームが表示されるindex.htmlにリダイレクト
     }
 
 }
