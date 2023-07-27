@@ -18,3 +18,4 @@ public interface YoyakuRepository extends CrudRepository<Yoyaku, Long> {
             LocalDateTime breakfastTime);
 
 }
+
