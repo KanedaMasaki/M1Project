@@ -11,6 +11,64 @@
           type="text/javascript"></script> -->
 </head>
 
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      font-family: 'Arial', sans-serif;
+      color: #010101;
+      background: #eaf3ff;
+      border-bottom: solid 3px #516ab6;
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 0.5em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      margin-right: 10px;
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .btn-warning {
+      flex: 1;
+      background-color: #ffc107;
+      color: #fff;
+    }
+</style>
+
 <!-- フロント専用ページ）
 ・朝食がいるなおかつ時刻が設定されていないリストが表示される。
 ・朝食の時間を編集する。 -->
@@ -54,9 +112,13 @@
 
         </tbody>
     </table>
+    <div class="btn-container">
+    <button style="margin-bottom:20px;" class="btn btn-primary" onclick="updateChecklist()">確定</button>
+
     <form method="get" th:action="@{/}">
         <input class="btn btn-warning" type="submit" value="終了">
     </form>
+    </div>
 
     <script>
         // フォーム表示切り替え
