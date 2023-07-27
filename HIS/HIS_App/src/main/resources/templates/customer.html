@@ -95,6 +95,12 @@
     <input class="form-control" placeholder="メールアドレス" required
           th:field="*{email}" type="email">
   </div>
+
+  <div class="mb-3">
+    <input class="form-control" placeholder="ご希望の部屋番号（1～30）" required
+          th:field="*{roomNumber}" type="text">
+  </div>
+
   <div class="mb-3">
     <label for="breakfast">朝食を希望しますか？</label>
     <input type="checkbox" th:field="*{breakfast}">

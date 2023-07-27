@@ -1,10 +1,9 @@
 package jp.kobe_u.cs.daikibo.HIS.controller;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -67,6 +66,9 @@ public class YayakuController {
         model.addAttribute(
                 "breakfast",
                 form.isBreakfast());
+        model.addAttribute(
+                "roomNumber",
+                form.getRoomNumber());
         // ユーザ登録確認ページ
         return "customerRegistration";
     }
@@ -77,7 +79,6 @@ public class YayakuController {
             RedirectAttributes attributes,
             @ModelAttribute @Validated YoyakuForm form,
             BindingResult bindingResult) {
-
         ts.createYoyaku(form);
         // 体調記録ページ
         return "conguratulation";
@@ -86,6 +87,16 @@ public class YayakuController {
     @GetMapping("/front")
     String showyoyakuList(Model model) {
         ArrayList<Yoyaku> list = ts.getBreakfastTime();
+        // 確認用
+        // for (Yoyaku yoyaku : list) {
+        //     System.out.println("名前：" + yoyaku.getName());
+        //     System.out.println("チェックイン日：" + yoyaku.getCheckInDate());
+        //     System.out.println("メールアドレス：" + yoyaku.getEmail());
+        //     System.out.println("朝食の有無：" + yoyaku.isBreakfast());
+        //     System.out.println("朝食時間：" + yoyaku.getBreakfastTime());
+        //     System.out.println("掃除したかどうか：" + yoyaku.isClean());
+        //     System.out.println("-----------------------------------");
+        // }
         model.addAttribute("yoyakulist", list);
         return "front";
     }
@@ -97,8 +108,7 @@ public class YayakuController {
         RedirectAttributes attributes,
         @ModelAttribute @Validated YoyakuForm form,
         BindingResult bindingResult) {
-        System.out.println(form);
-        // ts.updateYoyaku(form);
+        ts.updateYoyaku(form);
         return "redirect:/front";
     }
 
@@ -115,28 +125,18 @@ public class YayakuController {
         model.addAttribute("cleanList", list);
         return "clean";
     }
-
-    @PostMapping("/{id}/clean")
+    
+    @PostMapping("/clean/update")
     public String cleaning(
-            @PathVariable("id") Long id,
-            @RequestParam("name") String name,
-            @RequestParam("checkInDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkInDate,
-            @RequestParam("Email") String Email,
-            @RequestParam("breakfast") boolean breakfast,
-            @RequestParam("breakfastTime") LocalDateTime breakfastTime,
-            @RequestParam("clean") boolean clean) {
+        Model model,
+        RedirectAttributes attributes,
+        @ModelAttribute @Validated YoyakuForm form,
+        BindingResult bindingResult) {
 
         // DB上のユーザ情報を更新し、新しいユーザ情報を戻り値として返す
-        yr.save(new Yoyaku(
-                id,
-                name,
-                checkInDate,
-                Email,
-                breakfast,
-                breakfastTime,
-                true));
+        ts.updateYoyaku(form);
 
-        return "redirect:/"; // フォームが表示されるindex.htmlにリダイレクト
+        return "redirect:/clean"; // フォームが表示されるindex.htmlにリダイレクト
     }
 
 }

@@ -78,42 +78,34 @@
         <thead>
             <tr>
                 <th>名前</th>
+                <th>部屋番号</th>
                 <th>掃除のチェック</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="log:${cleanList}">
             <td th:text="${log.name}"></td>
+            <td th:text="${log.roomNumber}"></td>
             <td>
             <span>
-                <form th:action="@{/__${log['id']}__/clean}" method="post">
-                    <input type="hidden" name="id" th:value="${log['id']}">
+                <form th:id="'Form-' + ${log.id}" th:action="@{/clean/update}" method="post">
+                    <input type="hidden" name="id" th:value="${log.id}">
                     <input type="hidden" name="name" th:value="${log.name}">
                     <input type="hidden" name="checkInDate" th:value="${log.checkInDate}">
                     <input type="hidden" name="Email" th:value="${log.Email}">
                     <input type="hidden" name="breakfast" th:value="${log.breakfast}">
                     <input type="hidden" name="breakfastTime" th:value="${log.breakfastTime}">
                     <input type="hidden" name="clean" th:value="${log.clean}">
-                    <input type="submit" class="btn btn-primary" value="掃除済みボタン">
+                    <input type="hidden" name="roomNumber" th:value="${log.roomNumber}">
+                    <input type="submit" class="btn btn-primary" value="掃除済みボタン" th:onclick="'updateChecklist(\'' + ${log.id} + '\')'">
                 </form>
             </span>
         </td>
             
             </tr>
-            <!-- <tr>
-                <td>岡本一郎さん</td>
-                <td>
-                    <input type="checkbox" id="checkbox1" />
-                </td>
-            </tr>
-            <tr>
-                <td>岡本二朗さん</td>
-                <td>
-                    <input type="checkbox" id="checkbox2" />
-                </td>
-            </tr> -->
         </tbody>
     </table>
+
     <div class="btn-container">
     <button style="margin-bottom:20px;" class="btn btn-primary" onclick="updateChecklist()">確定</button>
 
@@ -123,16 +115,13 @@
   </div>
 
       <script>
-        function updateChecklist() {
-            var timeInput1 = document.getElementById("timeInput1");
-            var timeInput2 = document.getElementById("timeInput2");
-
-            var breakfastTime1 = timeInput1.value;
-            var breakfastTime2 = timeInput2.value;
-
-            // ここで、breakfastTime1とbreakfastTime2の値をサーバーに送信してデータを更新する処理を実装します。
-            // 例えば、Ajaxを使用して非同期でデータを送信することが考えられます。
-            // サーバー側でデータの更新が行われた後、成功した旨のメッセージをユーザーに表示するなどの処理も追加できます。
+        function updateChecklist(logIndex) {
+            // フォーム処理
+            var form = document.getElementById("Form-" + logIndex);
+            // cleanの値を取得し、反転させる
+            var cleanInput = form.elements["clean"];
+            cleanInput.value = !(cleanInput.value === "true");
+            form.submit();
         }
     </script>
 </body>
