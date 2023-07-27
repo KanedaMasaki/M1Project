@@ -31,58 +31,50 @@
                 <td th:text="${log.name}"></td>
                 <td>
                     <span>
-                        <form  id="Form" th:action="@{/front/update}" method="post">
+                        <form id="'Form-' + ${log.id}" th:action="@{/front/update}" method="post">
+                            <input type="hidden" name="id" th:value="${log.id}">
                             <input type="hidden" name="name" th:value="${log.name}">
-                            <input type="hidden" name="checkInDate" th:value="${checkInDate}">
-                            <input type="hidden" name="Email" th:value="${Email}">
-                            <input type="hidden" name="breakfast" th:value="${breakfast}">
+                            <input type="hidden" name="checkInDate" th:value="${log.checkInDate}">
+                            <input type="hidden" name="Email" th:value="${log.Email}">
+                            <input type="hidden" name="breakfast" th:value="${log.breakfast}">
                             <!-- 朝食時間入力フォーム -->
-                            <div id="inputForm" style="display: none;">
+                            <div th:id="'update-' + ${log.id}" style="display: none;">
                                 <label for="timeInput">時間を入力してください:</label><br>
                                 <input type="time" name="breakfastTime">
+                                <button style="margin-bottom:20px;" class="btn btn-warning" th:onclick="'updateChecklist(\'' + ${log.id} + '\')'">確定</button>
                             </div>
+                            <input th:id="'button-' + ${log.id}" class="btn btn-success" value="入力する" th:onclick="'toggleInputForm(\'' + ${log.id} + '\')'">
                         </form>
-                        <input id="submitButton" class="btn btn-success" value="入力する" onclick="toggleInputForm()">
+                        
                     </span>
                 </td>
             </tr>
-            <!-- <tr>
-                <td>岡本一郎さん</td>
-                <td>
-                    <input type="time" id="timeInput1" />
-                </td>
-            </tr>
-            <tr>
-                <td>岡本二朗さん</td>
-                <td>
-                    <input type="time" id="timeInput2" />
-                </td>
-            </tr> -->
+
         </tbody>
     </table>
-
-    <button style="margin-bottom:20px;" class="btn btn-warning" onclick="updateChecklist()">確定</button>
+    
 
     <form method="get" th:action="@{/}">
         <input class="btn btn-warning" type="submit" value="終了">
     </form>
 
     <script>
-        function toggleInputForm() {
-            
-            var inputForm = document.getElementById("inputForm");
-            if (inputForm.style.display === "none") {
-                inputForm.style.display = "block"; // フォームを表示
-            } else {
-                inputForm.style.display = "none"; // フォームを非表示
-            }
-            document.getElementById("submitButton").style.display = "none";// ボタンを非表示
+        function toggleInputForm(logIndex) {
+            // logIndexはJavaScriptの変数として使用できるようになります
+            var inputForm = document.getElementById("update-" + logIndex);
+            var buttonform = document.getElementById("button-" + logIndex);
+            inputForm.style.display = "block";
+            buttonform.style.display = "none";
         }
 
-        function updateChecklist() {
+        function updateChecklist(logIndex) {
             // フォーム処理
-            var form = document.getElementById("Form");
+            var form = document.getElementById("Form-" + logIndex);
+            console.log(form);
+            alert(form);
             form.submit();
+            // var form = document.getElementById("Form");
+            // form.submit();
         }
     </script>
 </body>

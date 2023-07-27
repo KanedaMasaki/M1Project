@@ -61,16 +61,27 @@ public class YoyakuService {
     public Yoyaku updateYoyaku(YoyakuForm form) {
         // DB上のYoyaku情報を更新し、新しいユーザ情報を戻り値として返す
         Yoyaku yoyaku = new Yoyaku(
-            null, // idは自動生成されるためnullを指定
+            form.getId(), 
             form.getName(),
             LocalDate.parse(form.getCheckInDate()), // StringからLocalDateに変換
             form.getEmail(),
             form.isBreakfast(),
-            null, // breakfastTimeはnullを指定
+            form.getBreakfastTime(), // breakfastTimeはnullを指定
             false // cleanはfalseを指定（デフォルト値）
         );
-    
+        // // 確認用
+        // System.out.println("id:" + yoyaku.getId());
+        // System.out.println("名前：" + yoyaku.getName());
+        // System.out.println("チェックイン日：" + yoyaku.getCheckInDate());
+        // System.out.println("メールアドレス：" + yoyaku.getEmail());
+        // System.out.println("朝食の有無：" + yoyaku.isBreakfast());
+        // System.out.println("朝食時間：" + yoyaku.getBreakfastTime());
+        // System.out.println("掃除したかどうか：" + yoyaku.isClean());
+        // System.out.println("-----------------------------------");
+        repo.deleteById(yoyaku.getId());
+        
         return repo.save(yoyaku);
+        
     }
       /**
    * ユーザの情報を更新する
