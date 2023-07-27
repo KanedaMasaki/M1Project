@@ -1,10 +1,9 @@
 package jp.kobe_u.cs.daikibo.HIS.controller;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -79,7 +78,6 @@ public class YayakuController {
             BindingResult bindingResult) {
 
         ts.createYoyaku(form);
-
         // 体調記録ページ
         return "conguratulation";
     }
@@ -87,8 +85,30 @@ public class YayakuController {
     @GetMapping("/front")
     String showyoyakuList(Model model) {
         ArrayList<Yoyaku> list = ts.getBreakfastTime();
+        // 確認用
+        // for (Yoyaku yoyaku : list) {
+        //     System.out.println("名前：" + yoyaku.getName());
+        //     System.out.println("チェックイン日：" + yoyaku.getCheckInDate());
+        //     System.out.println("メールアドレス：" + yoyaku.getEmail());
+        //     System.out.println("朝食の有無：" + yoyaku.isBreakfast());
+        //     System.out.println("朝食時間：" + yoyaku.getBreakfastTime());
+        //     System.out.println("掃除したかどうか：" + yoyaku.isClean());
+        //     System.out.println("-----------------------------------");
+        // }
         model.addAttribute("yoyakulist", list);
         return "front";
+    }
+
+
+    @PostMapping("/front/update")
+    String updateyoyakuList(
+        Model model,
+        RedirectAttributes attributes,
+        @ModelAttribute @Validated YoyakuForm form,
+        BindingResult bindingResult) {
+        System.out.println(form.getBreakfastTime());
+        ts.updateYoyaku(form);
+        return "redirect:/front";
     }
 
     @GetMapping("/cook")
@@ -112,7 +132,7 @@ public class YayakuController {
             @RequestParam("checkInDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkInDate,
             @RequestParam("Email") String Email,
             @RequestParam("breakfast") boolean breakfast,
-            @RequestParam("breakfastTime") LocalDateTime breakfastTime,
+            @RequestParam("breakfastTime") LocalTime breakfastTime,
             @RequestParam("clean") boolean clean) {
 
         // DB上のユーザ情報を更新し、新しいユーザ情報を戻り値として返す
