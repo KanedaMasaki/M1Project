@@ -52,29 +52,24 @@
 
         </tbody>
     </table>
-    
-
     <form method="get" th:action="@{/}">
         <input class="btn btn-warning" type="submit" value="終了">
     </form>
 
     <script>
+        // フォーム表示切り替え
         function toggleInputForm(logIndex) {
-            // logIndexはJavaScriptの変数として使用できるようになります
             var inputForm = document.getElementById("update-" + logIndex);
             var buttonform = document.getElementById("button-" + logIndex);
             inputForm.style.display = "block";
             buttonform.style.display = "none";
         }
 
+        // チェックリスト更新
         function updateChecklist(logIndex) {
             // フォーム処理
             var form = document.getElementById("Form-" + logIndex);
-            console.log(form);
-            alert(form);
             form.submit();
-            // var form = document.getElementById("Form");
-            // form.submit();
         }
     </script>
 </body>
