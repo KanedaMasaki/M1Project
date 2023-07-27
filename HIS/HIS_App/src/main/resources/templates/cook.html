@@ -29,16 +29,10 @@
         <tbody>
         <tr th:each="log:${cookList}">
           <td th:text="${log.name}"></td>
-          <td th:text="${log.breakfastTime}"></td>
+          <td th:text="${log.breakfastTime != null ? log.breakfastTime : '未確定'}"></td>
+
         </tr>
-        <!-- <tr>
-            <td>岡本一郎さん</td>
-            <td>2023-07-30</td>
-        </tr>
-        <tr>
-            <td>岡本二朗さん</td>
-            <td>2023-07-31</td>
-        </tr> -->
+
         </tbody>
       </table>
 

@@ -20,4 +20,6 @@ public class YoyakuForm {
     String email; // メールアドレス
     boolean breakfast; // 朝食の有無
     LocalTime breakfastTime; // 朝食の時間
+    boolean clean; // 掃除したかどうか
+    int roomNumber; // 部屋番号
 }
