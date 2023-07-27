@@ -1,5 +1,6 @@
 package jp.kobe_u.cs.daikibo.HIS.controller;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -19,4 +20,5 @@ public class YoyakuForm {
     // int stayDays; // 宿泊日数
     String email; // メールアドレス
     boolean breakfast; // 朝食の有無
+    LocalDateTime breakfastTime; // 朝食の時間
 }

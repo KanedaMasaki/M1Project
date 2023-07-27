@@ -79,7 +79,6 @@ public class YayakuController {
             BindingResult bindingResult) {
 
         ts.createYoyaku(form);
-
         // 体調記録ページ
         return "conguratulation";
     }
@@ -89,6 +88,18 @@ public class YayakuController {
         ArrayList<Yoyaku> list = ts.getBreakfastTime();
         model.addAttribute("yoyakulist", list);
         return "front";
+    }
+
+
+    @PostMapping("/front/update")
+    String updateyoyakuList(
+        Model model,
+        RedirectAttributes attributes,
+        @ModelAttribute @Validated YoyakuForm form,
+        BindingResult bindingResult) {
+        System.out.println(form);
+        // ts.updateYoyaku(form);
+        return "redirect:/front";
     }
 
     @GetMapping("/cook")

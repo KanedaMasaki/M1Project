@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>清掃員専用ページ</title>
-  <link rel="stylesheet"
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet"
         th:href="@{/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css}"/>
   <script th:src="@{/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js}"
-          type="text/javascript"></script>
+          type="text/javascript"></script> -->
 </head>
 
 <!-- フロント専用ページ）
@@ -29,16 +31,18 @@
                 <td th:text="${log.name}"></td>
                 <td>
                     <span>
-                        <form th:action="@{/__${log['id']}__/front}" method="post">
-                            <input type="hidden" name="id" th:value="${log['id']}">
+                        <form  id="Form" th:action="@{/front/update}" method="post">
                             <input type="hidden" name="name" th:value="${log.name}">
                             <input type="hidden" name="checkInDate" th:value="${checkInDate}">
                             <input type="hidden" name="Email" th:value="${Email}">
                             <input type="hidden" name="breakfast" th:value="${breakfast}">
-                            <input type="hidden" name="breakfastTime" th:value="${breakfastTime}">
-                            <input type="hidden" name="clean" th:value="${clean}">
-                            <input type="submit" class="btn btn-primary" value="助ける">
+                            <!-- 朝食時間入力フォーム -->
+                            <div id="inputForm" style="display: none;">
+                                <label for="timeInput">時間を入力してください:</label><br>
+                                <input type="time" name="breakfastTime">
+                            </div>
                         </form>
+                        <input id="submitButton" class="btn btn-success" value="入力する" onclick="toggleInputForm()">
                     </span>
                 </td>
             </tr>
@@ -64,16 +68,21 @@
     </form>
 
     <script>
+        function toggleInputForm() {
+            
+            var inputForm = document.getElementById("inputForm");
+            if (inputForm.style.display === "none") {
+                inputForm.style.display = "block"; // フォームを表示
+            } else {
+                inputForm.style.display = "none"; // フォームを非表示
+            }
+            document.getElementById("submitButton").style.display = "none";// ボタンを非表示
+        }
+
         function updateChecklist() {
-            var timeInput1 = document.getElementById("timeInput1");
-            var timeInput2 = document.getElementById("timeInput2");
-
-            var breakfastTime1 = timeInput1.value;
-            var breakfastTime2 = timeInput2.value;
-
-            // ここで、breakfastTime1とbreakfastTime2の値をサーバーに送信してデータを更新する処理を実装します。
-            // 例えば、Ajaxを使用して非同期でデータを送信することが考えられます。
-            // サーバー側でデータの更新が行われた後、成功した旨のメッセージをユーザーに表示するなどの処理も追加できます。
+            // フォーム処理
+            var form = document.getElementById("Form");
+            form.submit();
         }
     </script>
 </body>
