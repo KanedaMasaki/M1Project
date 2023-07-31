@@ -3,6 +3,9 @@ package jp.kobe_u.cs.daikibo.HIS.controller;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Comparator;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,6 +118,7 @@ public class YayakuController {
     @GetMapping("/cook")
     String showcookList(Model model) {
         ArrayList<Yoyaku> list = ts.getBreakfastTrue();
+        Collections.sort(list, Comparator.nullsLast(Comparator.comparing(Yoyaku::getBreakfastTime, Comparator.nullsLast(Comparator.naturalOrder()))));
         model.addAttribute("cookList", list);
         return "cook";
     }
