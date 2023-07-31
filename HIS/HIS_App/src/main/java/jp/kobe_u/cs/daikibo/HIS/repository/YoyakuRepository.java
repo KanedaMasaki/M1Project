@@ -2,6 +2,7 @@ package jp.kobe_u.cs.daikibo.HIS.repository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,7 @@ public interface YoyakuRepository extends CrudRepository<Yoyaku, Long> {
     public Iterable<Yoyaku> findByCheckInDateAndClean(LocalDate checkInDate, boolean clean);
     public Iterable<Yoyaku> findByCheckInDateAndBreakfastAndBreakfastTime(LocalDate checkInDate, boolean breakfast,
             LocalTime breakfastTime);
+    
 
 }
 
